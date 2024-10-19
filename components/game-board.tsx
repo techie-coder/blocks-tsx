@@ -73,7 +73,7 @@ export function GameBoardComponent() {
             switch (collision.type) {
               case 'tnt':
                 // Remove TNT and don't move
-                return prevBlocks.filter((b) => b !== collision)
+                return null
               case 'obstacle':
                 // Don't move
                 return block
@@ -90,7 +90,7 @@ export function GameBoardComponent() {
           return { ...block, x: newX, y: newY }
         }
         return block
-      })
+      }).filter((block): block is Block => block !== null)
 
       checkWinCondition(updatedBlocks)
       return updatedBlocks
